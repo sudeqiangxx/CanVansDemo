@@ -1,6 +1,9 @@
 package com.example.famismartsdq.canvansdemo;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,8 +17,10 @@ import android.view.View;
 
 public class CustomView extends View{
     private Path path;
+    private Context context;
     public CustomView(Context context) {
         super(context);
+        this.context=context;
     }
 
     public CustomView(Context context, AttributeSet attrs) {
@@ -54,6 +59,10 @@ public class CustomView extends View{
         path.moveTo(width/2-400,height/2+400);
         path.quadTo(width/2-400+10,height/2+200,width/2-400+20,height/2+340);
         canvas.drawPath(path,penshouPaint);
+        path.moveTo(width/2-400+20,height/2+340);
+        BitmapFactory.Options options=new BitmapFactory.Options();
+        options.inSampleSize=2;
+        Resources res=context.getResources();
 
 //        canvas.drawCircle(100,100,20,paint);
     }
